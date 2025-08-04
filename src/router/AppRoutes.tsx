@@ -1,9 +1,10 @@
 
 
+
 // import { Route, Routes } from "react-router-dom";
 // import Home from "@/Pages/Home";
 // import WalletPage from "@/features/wallets/pages/WalletPage";
-// import TransactionList from "@/features/transactions/pages/TransectionList";
+
 // import UserDashboard from "@/features/dashboard/pages/userDashboard";
 // import DashboardLayout from "@/layout/DashboardLayout";
 // import MainLayout from "@/layout/MainLayout";
@@ -17,6 +18,9 @@
 // import RoleGuard from "@/middleware/RoleGuard";
 // import AgentApproval from "@/features/agents/Pages/AgentApproval";
 // import UserList from "@/features/users/Pages/UserList";
+// import TransactionList from "@/features/transactions/pages/TransectionList";
+// // import SettingsPage from "@/features/settings/SettingsPage";
+
 
 // const AppRoutes = () => {
 //   return (
@@ -30,7 +34,7 @@
 //         <Route path="/register" element={<Register />} />
 //       </Route>
 
-//       {/* 🔒 Protected Routes by Role */}
+//       {/* 🔒 User Dashboard */}
 //       <Route
 //         path="/dashboard/user"
 //         element={
@@ -42,10 +46,12 @@
 //         }
 //       >
 //         <Route index element={<UserDashboard />} />
-//         <Route path="/dashboard/users" element={<UserList />} />
-
+//         <Route path="wallet" element={<WalletPage />} />
+//         <Route path="transactions" element={<TransactionList />} />
+//         <Route path="users" element={<UserList />} />
 //       </Route>
 
+//       {/* 🔒 Admin Dashboard */}
 //       <Route
 //         path="/dashboard/admin"
 //         element={
@@ -57,8 +63,11 @@
 //         }
 //       >
 //         <Route index element={<AdminDashboard />} />
+        
+//         {/* Route path="settings" element={<SettingsPage />}  */}
 //       </Route>
 
+//       {/* 🔒 Agent Dashboard */}
 //       <Route
 //         path="/dashboard/agent"
 //         element={
@@ -70,8 +79,7 @@
 //         }
 //       >
 //         <Route index element={<AgentDashboard />} />
-//         <Route path="/dashboard/agent-approval" element={<AgentApproval />} />
-
+//         <Route path="agent-approval" element={<AgentApproval />} />
 //       </Route>
 //     </Routes>
 //   );
@@ -81,24 +89,32 @@
 
 
 import { Route, Routes } from "react-router-dom";
-import Home from "@/Pages/Home";
-import WalletPage from "@/features/wallets/pages/WalletPage";
-import TransactionList from "@/features/transactions/pages/TransectionList";
-import UserDashboard from "@/features/dashboard/pages/userDashboard";
-import DashboardLayout from "@/layout/DashboardLayout";
+
+// Layouts
 import MainLayout from "@/layout/MainLayout";
-import AgentDashboard from "@/features/agents/Pages/AgentDashboard";
-import AdminDashboard from "@/features/dashboard/pages/AdminDashboard";
+import DashboardLayout from "@/layout/DashboardLayout";
+
+// Public Pages
+import Home from "@/Pages/Home";
 import Login from "@/features/auth/pages/Login";
 import Register from "@/features/auth/pages/Register";
 
-// 🛡️ Middleware
+// Shared Pages
+import WalletPage from "@/features/wallets/pages/WalletPage";
+import TransactionList from "@/features/transactions/pages/TransectionList";
+import UserList from "@/features/users/Pages/UserList";
+
+// Dashboard Pages
+import UserDashboard from "@/features/dashboard/pages/userDashboard";
+import AdminDashboard from "@/features/dashboard/pages/AdminDashboard";
+import AgentDashboard from "@/features/agents/Pages/AgentDashboard";
+import AgentApproval from "@/features/agents/Pages/AgentApproval";
+// import SettingsPage from "@/features/settings/SettingsPage"; // Uncomment if exists
+
+// Middleware
 import PrivateRoute from "@/middleware/PrivateRoute";
 import RoleGuard from "@/middleware/RoleGuard";
-import AgentApproval from "@/features/agents/Pages/AgentApproval";
-import UserList from "@/features/users/Pages/UserList";
-// import SettingsPage from "@/features/settings/SettingsPage";
-
+import SettingsPage from "@/features/settings/SettingsPage";
 
 const AppRoutes = () => {
   return (
@@ -106,13 +122,13 @@ const AppRoutes = () => {
       {/* 🔓 Public Layout */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/wallet" element={<WalletPage />} />
-        <Route path="/transactions" element={<TransactionList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+           <Route path="/wallet" element={<WalletPage />} />
+        <Route path="/transactions" element={<TransactionList />} />
       </Route>
 
-      {/* 🔒 User Dashboard */}
+      {/* 🔒 USER DASHBOARD */}
       <Route
         path="/dashboard/user"
         element={
@@ -126,10 +142,9 @@ const AppRoutes = () => {
         <Route index element={<UserDashboard />} />
         <Route path="wallet" element={<WalletPage />} />
         <Route path="transactions" element={<TransactionList />} />
-        <Route path="users" element={<UserList />} />
       </Route>
 
-      {/* 🔒 Admin Dashboard */}
+      {/* 🔒 ADMIN DASHBOARD */}
       <Route
         path="/dashboard/admin"
         element={
@@ -141,10 +156,14 @@ const AppRoutes = () => {
         }
       >
         <Route index element={<AdminDashboard />} />
-        {/* Route path="settings" element={<SettingsPage />}  */}
+        <Route path="wallet" element={<WalletPage />} />
+        <Route path="transactions" element={<TransactionList />} />
+        <Route path="users" element={<UserList />} />
+        <Route path="settings" element={<SettingsPage />} />
+        <Route path="agent-approval" element={<AgentApproval />} />
       </Route>
 
-      {/* 🔒 Agent Dashboard */}
+      {/* 🔒 AGENT DASHBOARD */}
       <Route
         path="/dashboard/agent"
         element={
@@ -156,7 +175,9 @@ const AppRoutes = () => {
         }
       >
         <Route index element={<AgentDashboard />} />
-        <Route path="agent-approval" element={<AgentApproval />} />
+        <Route path="wallet" element={<WalletPage />} />
+        <Route path="transactions" element={<TransactionList />} />
+      
       </Route>
     </Routes>
   );

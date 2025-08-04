@@ -1,18 +1,21 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+// ✅ Final correct version
+import useAuthAxios from "@/hooks/useAuthAxios";
 import type { IUser } from "@/types/user";
-import axios from "axios";
 
-const API_BASE = "http://localhost:3000/"; 
+
+const axiosInstance = useAuthAxios();
 
 export const fetchPendingAgents = async (): Promise<IUser[]> => {
-  const res = await axios.get(`${API_BASE}/agents/pending`);
-  return res.data;
+  const res = await axiosInstance.get("/admin/agents/pending");
+  return res.data?.data || []; // ✅ Safe fallback
 };
 
-export const approveAgentRequest = async (id: string) => {
-  await axios.patch(`${API_BASE}/agents/approve/${id}`);
+export const approveAgentRequest = async (agentId: string) => {
+  return axiosInstance.patch(`/admin/agents/approve/${agentId}`);
 };
 
-export const rejectAgentRequest = async (id: string) => {
-  await axios.patch(`${API_BASE}/agents/reject/${id}`);
+export const rejectAgentRequest = async (agentId: string) => {
+  return axiosInstance.patch(`/admin/agents/reject/${agentId}`);
 };
 

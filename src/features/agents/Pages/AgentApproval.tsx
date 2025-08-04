@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from "react";
 
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import type { IUser } from "@/types/user";
-import { approveAgentRequest, fetchPendingAgents, rejectAgentRequest } from "@/services/agentService";
+import {
+  approveAgentRequest,
+  fetchPendingAgents,
+  rejectAgentRequest,
+} from "@/services/agentService";
 import { Button } from "@/components/ui/button";
 
 const AgentApproval = () => {
@@ -14,7 +18,13 @@ const AgentApproval = () => {
     try {
       setLoading(true);
       const data = await fetchPendingAgents();
-      setPendingAgents(data);
+
+      if (Array.isArray(data)) {
+        setPendingAgents(data);
+      } else {
+        setPendingAgents([]);
+        toast.warn("Unexpected data format received");
+      }
     } catch (err) {
       toast.error("Failed to fetch agent requests");
     } finally {
@@ -48,7 +58,9 @@ const AgentApproval = () => {
 
   return (
     <div className="p-4 md:p-6 lg:p-10 bg-white shadow-md rounded-md animate-fadeIn min-h-screen">
-      <h2 className="text-2xl md:text-3xl font-bold text-indigo-700 mb-6 text-center">Agent Approval Requests</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-indigo-700 mb-6 text-center">
+        Agent Approval Requests
+      </h2>
 
       {loading ? (
         <p className="text-gray-500 text-center">Loading...</p>
@@ -67,14 +79,14 @@ const AgentApproval = () => {
               </div>
               <div className="flex gap-2">
                 <Button
-                  onClick={() => handleApprove(agent._id!)}
+                  onClick={() => handleApprove(agent._id)}
                   className="bg-green-600 text-white hover:bg-green-700 transition"
                 >
                   Approve
                 </Button>
                 <Button
                   variant="destructive"
-                  onClick={() => handleReject(agent._id!)}
+                  onClick={() => handleReject(agent._id)}
                 >
                   Reject
                 </Button>

@@ -1,15 +1,13 @@
-export type TransactionType = "add" | "withdraw" | "send" | "receive";
-export type TransactionStatus = "pending" | "completed" | "reversed";
-
 export interface ITransaction {
-  _id?: string;
-  wallet: string; 
-  type: TransactionType;
+  _id: string;
+  wallet: string;
+  type: "send" | "cashIn" | "cashOut" | "withdraw" | "add";
   amount: number;
   fee: number;
   commission: number;
-  status: TransactionStatus;
-  fromUser?: string;
-  toUser?: string;
+  status: "pending" | "completed" | "reversed";
+  fromUser: string;
+  toUser: string;
   createdAt: string;
+  updatedAt: string;
 }

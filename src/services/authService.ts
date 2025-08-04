@@ -1,7 +1,5 @@
 
-
-// src/services/authService.ts
-import axiosInstance from "@/utils/axiosInstance";
+import axios from "axios";
 
 interface LoginData {
   email: string;
@@ -9,7 +7,7 @@ interface LoginData {
 }
 
 export const loginUser = async (data: LoginData) => {
-  const response = await axiosInstance.post("/auth/login", data);
+  const response = await axios.post("http://localhost:3000/api/auth/login", data);
   return response.data;
 };
 
@@ -19,6 +17,6 @@ export const registerUser = async (data: {
   password: string;
   role: "user" | "agent" | "admin";
 }) => {
-  const response = await axiosInstance.post("/user/register", data);
+  const response = await axios.post("http://localhost:3000/api/user/register", data);
   return response.data;
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 // import type { IUser } from "@/types/user";
@@ -182,6 +183,12 @@ import type { IUser } from "@/types/user";
 
 const API_BASE = "http://localhost:3000/api";
 
+type ApiResponse<T> = {
+  success: boolean;
+  message: string;
+  data: T;
+};
+
 const UserList = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -200,13 +207,13 @@ const UserList = () => {
       const { token } = JSON.parse(authUser);
 
       try {
-        const res = await axios.get(`${API_BASE}/users`, {
+        const res = await axios.get<ApiResponse<IUser[]>>(`${API_BASE}/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        setUsers(res.data.data); // Assuming backend responds with { data: [...] }
+        setUsers(res.data.data);
       } catch (err: any) {
         console.error("Error fetching users:", err);
         setError(err?.response?.data?.message || "Failed to fetch users");
@@ -228,27 +235,31 @@ const UserList = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold text-indigo-700 mb-6">All Users</h1>
+      <h1 className="text-xl md:text-2xl font-bold text-indigo-700 mb-6 text-center md:text-left">All Users</h1>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 shadow-md rounded-lg bg-white">
+      <div className="overflow-x-auto rounded-md shadow-sm">
+        <table className="min-w-full bg-white divide-y divide-gray-200">
           <thead className="bg-indigo-100">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">#</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Name</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Email</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Role</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">#</th>
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Name</th>
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Email</th>
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Role</th>
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Status</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 text-sm text-gray-700">
+          <tbody className="divide-y divide-gray-100 text-sm text-gray-700">
             {users.map((user, index) => (
               <tr key={user._id}>
-                <td className="px-4 py-3">{index + 1}</td>
-                <td className="px-4 py-3">{user.name || "N/A"}</td>
-                <td className="px-4 py-3">{user.email}</td>
-                <td className="px-4 py-3">{user.role}</td>
-                <td className="px-4 py-3">
+                <td className="px-2 py-2 md:px-4 md:py-3">{index + 1}</td>
+                <td className="px-2 py-2 md:px-4 md:py-3 truncate max-w-[120px] md:max-w-none">
+                  {user.name || "N/A"}
+                </td>
+                <td className="px-2 py-2 md:px-4 md:py-3 truncate max-w-[180px] md:max-w-none">
+                  {user.email}
+                </td>
+                <td className="px-2 py-2 md:px-4 md:py-3 capitalize">{user.role}</td>
+                <td className="px-2 py-2 md:px-4 md:py-3">
                   <span
                     className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
                       user.isActive === "ACTIVE"

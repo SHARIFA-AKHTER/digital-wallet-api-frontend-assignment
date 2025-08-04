@@ -1,7 +1,6 @@
 import { useAuth } from "@/context/AuthContext";
 import { useWallet } from "@/context/WalletContext";
 import UserList from "@/features/users/Pages/UserList";
-import AddMoneyForm from "@/features/wallets/components/AddMoneyForm";
 
 const UserDashboard = () => {
   const { user } = useAuth();
@@ -16,7 +15,7 @@ const UserDashboard = () => {
         <p className="text-lg">Wallet Balance</p>
         <h3 className="text-3xl font-bold text-primary">${balance}</h3>
 
-         <AddMoneyForm />
+        
          <UserList></UserList>
       </div>
     </section>

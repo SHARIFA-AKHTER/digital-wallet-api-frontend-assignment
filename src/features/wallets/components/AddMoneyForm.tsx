@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import axios from "axios";
+import type { IWallet } from "@/types/wallet";
 
 const AddMoneyForm = () => {
   const [amount, setAmount] = useState<number>(0);
@@ -23,8 +24,8 @@ const AddMoneyForm = () => {
 
         
   console.log("Sending token:", token);
-      const response = await axios.post(
-        "http://localhost:3000/api/wallets/add",
+      const response = await axios.post<{ success: boolean; data: IWallet }>(
+        "http://localhost:3000/api/wallet/add",
         { amount },
         {
           headers: {

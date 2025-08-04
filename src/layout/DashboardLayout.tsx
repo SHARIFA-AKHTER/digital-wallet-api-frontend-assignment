@@ -1,15 +1,21 @@
-import Sidebar from "@/components/Sidebar";
+
 import { Outlet } from "react-router-dom";
+import Sidebar from "@/components/Sidebar";
 
 const DashboardLayout = () => {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col md:flex-row bg-white">
+      {/* Sidebar */}
       <Sidebar />
-      <main className="flex-1 p-4 bg-white">
-        <Outlet />
-      </main>
+
+      {/* Main content */}
+      <div className="flex-1 w-full min-h-screen p-4 md:p-6 bg-gray-50 overflow-x-hidden">
+        <div className="max-w-full">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default DashboardLayout
+export default DashboardLayout;
