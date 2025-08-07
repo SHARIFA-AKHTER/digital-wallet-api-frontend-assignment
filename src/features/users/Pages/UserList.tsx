@@ -49,7 +49,9 @@ const UserList = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center py-10 text-gray-600">Loading users...</div>;
+    return (
+      <div className="text-center py-10 text-gray-600">Loading users...</div>
+    );
   }
 
   if (error) {
@@ -57,32 +59,46 @@ const UserList = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-xl md:text-2xl font-bold text-indigo-700 mb-6 text-center md:text-left">All Users</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+      <h1 className="text-xl sm:text-2xl font-bold text-indigo-700 mb-6 text-center sm:text-left">
+        👥 All Users
+      </h1>
 
-      <div className="overflow-x-auto rounded-md shadow-sm">
-        <table className="min-w-full bg-white divide-y divide-gray-200">
+      <div className="w-full overflow-x-auto bg-white rounded-lg shadow-md">
+        <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-indigo-100">
             <tr>
-              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">#</th>
-              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Name</th>
-              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Email</th>
-              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Role</th>
-              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-xs md:text-sm font-semibold text-gray-700">Status</th>
+              <th className="px-3 py-2 text-left text-xs sm:text-sm hidden  font-semibold text-gray-700 whitespace-nowrap">
+                #
+              </th>
+              <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap">
+                Name
+              </th>
+              <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap hidden md:table-cell">
+                Email
+              </th>
+              <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap hidden sm:table-cell">
+                Role
+              </th>
+              <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap">
+                Status
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-sm text-gray-700">
             {users.map((user, index) => (
-              <tr key={user._id}>
-                <td className="px-2 py-2 md:px-4 md:py-3">{index + 1}</td>
-                <td className="px-2 py-2 md:px-4 md:py-3 truncate max-w-[120px] md:max-w-none">
+              <tr key={user._id} className="hover:bg-gray-50 transition">
+                <td className="px-3 hidden   py-2">{index + 1}</td>
+                <td className="px-3 py-2 max-w-[120px] sm:max-w-none overflow-hidden text-ellipsis whitespace-nowrap">
                   {user.name || "N/A"}
                 </td>
-                <td className="px-2 py-2 md:px-4 md:py-3 truncate max-w-[180px] md:max-w-none">
+                <td className="px-3 py-2 max-w-[180px] overflow-hidden text-ellipsis whitespace-nowrap hidden md:table-cell">
                   {user.email}
                 </td>
-                <td className="px-2 py-2 md:px-4 md:py-3 capitalize">{user.role}</td>
-                <td className="px-2 py-2 md:px-4 md:py-3">
+                <td className="px-3 py-2 capitalize whitespace-nowrap hidden sm:table-cell">
+                  {user.role}
+                </td>
+                <td className="px-3 py-2 whitespace-nowrap">
                   <span
                     className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
                       user.isActive === "ACTIVE"

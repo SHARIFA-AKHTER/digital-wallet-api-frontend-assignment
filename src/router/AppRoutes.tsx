@@ -36,8 +36,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-           <Route path="/wallet" element={<WalletPage />} />
-        <Route path="/transactions" element={<TransactionList />} />
+           {/* <Route path="/wallet" element={<WalletPage />} />
+        <Route path="/transactions" element={<TransactionList />} /> */}
       </Route>
 
       {/* 🔒 USER DASHBOARD */}
