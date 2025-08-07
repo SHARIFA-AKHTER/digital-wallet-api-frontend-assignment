@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import { useAuth } from "@/context/AuthContext";
+import { loginUser } from "@/services/authService";
 
 interface LoginInput {
   email: string;

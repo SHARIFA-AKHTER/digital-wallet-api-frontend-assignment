@@ -10,49 +10,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   if (!email || !password) {
-  //     alert("Please fill in all fields");
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await fetch("http://localhost:3000/api/auth/login", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     const result = await response.json();
-
-  //     if (!response.ok) {
-  //       alert(result.message || "Login failed");
-  //       return;
-  //     }
-
-  //     const { token, name, role } = result.data;
-
-  //     // Save user to context
-  //     login({
-  //       email,
-  //       token,
-  //       name,
-  //       role,
-  //     });
-
-  //     // Navigate based on role
-  //     if (role === "ADMIN") navigate("/dashboard/admin");
-  //     else if (role === "AGENT") navigate("/dashboard/agent");
-  //     else navigate("/dashboard/user");
-  //   } catch (error) {
-  //     console.error("Login error:", error);
-  //     alert("Something went wrong. Try again later.");
-  //   }
-  // };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

@@ -1,23 +1,13 @@
-import { toast } from "react-toastify";
-
-
-/**
- * Hook to show toast messages easily
- */
+import { toast } from "sonner";
 export const useAppToast = () => {
   const showSuccess = (message: string) =>
-    toast({
-      title: "Success",
-      description: message,
-      variant: "default",
-    });
+    toast.success(message); 
 
   const showError = (message: string) =>
-    toast({
-      title: "Error",
-      description: message,
-      variant: "destructive",
-    });
+    toast.error(message); 
 
   return { showSuccess, showError };
 };
+
+
+
