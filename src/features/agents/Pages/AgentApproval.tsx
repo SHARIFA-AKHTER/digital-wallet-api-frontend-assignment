@@ -1,24 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import type { IUser } from "@/types/user";
-import {
-  approveAgentRequest,
-  fetchPendingAgents,
-  rejectAgentRequest,
-} from "@/services/agentService";
+import useAuthAxios from "@/hooks/useAuthAxios";
 import { Button } from "@/components/ui/button";
 
 const AgentApproval = () => {
   const [pendingAgents, setPendingAgents] = useState<IUser[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const axiosInstance = useAuthAxios();
+
   const loadAgents = async () => {
     try {
       setLoading(true);
-      const data = await fetchPendingAgents();
-
+      const res = await axiosInstance.get("/admin/agents/pending");
+      const data = res.data?.data || [];
       if (Array.isArray(data)) {
         setPendingAgents(data);
       } else {
@@ -34,17 +32,23 @@ const AgentApproval = () => {
 
   const handleApprove = async (id: string) => {
     try {
-      await approveAgentRequest(id);
+      await axiosInstance.patch(`/admin/agents/approve/${id}`);
       toast.success("Agent approved successfully");
       loadAgents();
-    } catch {
-      toast.error("Failed to approve agent");
+    } catch (err: any) {
+      if (err?.response?.status === 401) {
+        toast.error("Session expired. Please login again.");
+        localStorage.removeItem("token");
+        // navigate("/login"); 
+      } else {
+        toast.error("Failed to approve agent");
+      }
     }
   };
 
   const handleReject = async (id: string) => {
     try {
-      await rejectAgentRequest(id);
+      await axiosInstance.patch(`/admin/agents/reject/${id}`);
       toast.success("Agent rejected");
       loadAgents();
     } catch {
@@ -100,3 +104,4 @@ const AgentApproval = () => {
 };
 
 export default AgentApproval;
+

@@ -46,3 +46,4 @@ export const cashOut = async (userId: string, amount: number): Promise<ITransact
   return response.data.data;
 };
 
+

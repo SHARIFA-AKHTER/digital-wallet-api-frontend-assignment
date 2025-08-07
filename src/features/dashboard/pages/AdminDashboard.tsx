@@ -20,7 +20,7 @@ const AdminDashboard = () => {
       >
         View Agent Approval Requests
       </Link>
-
+    
     </div>
   );
 };

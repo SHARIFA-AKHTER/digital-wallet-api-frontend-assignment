@@ -25,12 +25,7 @@ const TransactionList = () => {
           },
         });
 
-        console.log("✅ API response:", res.data);
-
-        const transactionsData = res.data.data;
-        console.log("Transactions array:", transactionsData);
-
-        setTransactions(transactionsData || []);
+        setTransactions(res.data?.data || []);
       } catch (error) {
         console.error("❌ Failed to fetch transactions:", error);
       } finally {
@@ -50,8 +45,10 @@ const TransactionList = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h2 className="text-2xl font-semibold text-indigo-700 mb-4">Transaction History</h2>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+      <h2 className="text-xl sm:text-2xl font-bold text-indigo-700 mb-6 text-center sm:text-left">
+        📄 Transaction History
+      </h2>
 
       {/* Mobile / Tablet view */}
       <div className="grid grid-cols-1 gap-4 lg:hidden">
@@ -70,25 +67,25 @@ const TransactionList = () => {
 
       {/* Desktop table view */}
       <div className="hidden lg:block overflow-x-auto mt-6">
-        <table className="min-w-full bg-white shadow-md rounded-md">
-          <thead className="bg-indigo-100">
+        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+          <thead className="bg-indigo-100 text-gray-800">
             <tr>
-              <th className="py-2 px-4 text-left">Type</th>
-              <th className="py-2 px-4 text-left">Amount</th>
-              <th className="py-2 px-4 text-left">Status</th>
-              <th className="py-2 px-4 text-left">Sender</th>
-              <th className="py-2 px-4 text-left">Receiver</th>
-              <th className="py-2 px-4 text-left">Date</th>
+              <th className="py-3 px-5 text-left">Type</th>
+              <th className="py-3 px-5 text-left">Amount</th>
+              <th className="py-3 px-5 text-left">Status</th>
+              <th className="py-3 px-5 text-left">Sender</th>
+              <th className="py-3 px-5 text-left">Receiver</th>
+              <th className="py-3 px-5 text-left">Date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-gray-700">
             {transactions.map((txn) => (
-              <tr key={txn._id} className="border-b">
-                <td className="py-2 px-4 capitalize">{capitalizeType(txn.type)}</td>
-                <td className="py-2 px-4">৳{txn.amount.toFixed(2)}</td>
-                <td className="py-2 px-4">
+              <tr key={txn._id} className="border-t hover:bg-gray-50 transition">
+                <td className="py-3 px-5 capitalize">{capitalizeType(txn.type)}</td>
+                <td className="py-3 px-5">৳{txn.amount.toFixed(2)}</td>
+                <td className="py-3 px-5">
                   <span
-                    className={`text-xs px-2 py-1 rounded-full capitalize ${
+                    className={`text-xs font-medium px-3 py-1 rounded-full capitalize ${
                       capitalizeStatus(txn.status) === "Completed"
                         ? "bg-green-100 text-green-700"
                         : capitalizeStatus(txn.status) === "Pending"
@@ -99,9 +96,9 @@ const TransactionList = () => {
                     {capitalizeStatus(txn.status)}
                   </span>
                 </td>
-                <td className="py-2 px-4">{txn.fromUser || "N/A"}</td>
-                <td className="py-2 px-4">{txn.toUser || "N/A"}</td>
-                <td className="py-2 px-4">{new Date(txn.createdAt).toLocaleString()}</td>
+                <td className="py-3 px-5">{txn.fromUser || "N/A"}</td>
+                <td className="py-3 px-5">{txn.toUser || "N/A"}</td>
+                <td className="py-3 px-5">{new Date(txn.createdAt).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
@@ -111,7 +108,7 @@ const TransactionList = () => {
   );
 };
 
-// Helper functions to capitalize values
+// Capitalize helpers
 const capitalizeType = (type: string): "Send" | "CashIn" | "CashOut" | "Withdraw" | "Add" => {
   switch (type.toLowerCase()) {
     case "send":
@@ -145,3 +142,4 @@ const capitalizeStatus = (status: string): "Pending" | "Completed" | "Reversed" 
 };
 
 export default TransactionList;
+
