@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import type { IUser } from "@/types/user";
 
-const API_BASE = "http://localhost:3000/api";
+const API_BASE = "https://digital-wallet-api-backend.vercel.app/api";
 
 type ApiResponse<T> = {
   success: boolean;

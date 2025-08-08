@@ -1,69 +1,63 @@
-# React + TypeScript + Vite
+# 🌐 Digital Wallet - Frontend (Client Side)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend application** for the Digital Wallet system — a secure and role-based financial platform similar to **bKash** or **Nagad**. This client interacts with the backend API and supports different user roles such as **Admin**, **User**, and **Agent**.
 
-Currently, two official plugins are available:
+Live Demo: [👉 Click here to view deployed site](https://frontend-snowy-two-61.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+Project video link : https://www.loom.com/share/f4ce7bbbc3e14a4cb4c613c0f6816cf0
+## 🚀 Features
 
-## Expanding the ESLint configuration
+✅ Role-based Login & Registration  
+✅ JWT Authentication  
+✅ Dashboard for User, Agent, and Admin  
+✅ Add Money, Withdraw, and Send Money  
+✅ Transaction History View  
+✅ Admin: View & Manage Users, Wallets, Agents  
+✅ Agent: Cash-in / Cash-out Features  
+✅ Protected Routes with Role Checking  
+✅ API Integration with Backend
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🖼️ Screenshots
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+> *(Add screenshots here if needed — login page, dashboard, etc.)*
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧰 Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ⚛️ React.js
+- 📦 Vite (or Create React App)
+- 🔐 JWT Token Handling
+- ⚙️ Axios for API requests
+- 🔄 React Query (optional)
+- 🌈 TailwindCSS (or your UI library)
+- 🔔 React Toast Notifications (`sonner` or `react-toastify`)
+- 🛡️ Role-based Route Protection (PrivateRoute)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 📁 Folder Structure
+
+frontend/
+├── src/
+│ ├── components/
+│ ├── pages/
+│ ├── routes/
+│ ├── hooks/
+│ ├── utils/
+│ ├── context/
+│ └── main.tsx / App.tsx
+├── public/
+├── .env
+├── index.html
+└── vite.config.ts
+
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/your-username/digital-wallet-frontend.git
+cd digital-wallet-frontend/frontend

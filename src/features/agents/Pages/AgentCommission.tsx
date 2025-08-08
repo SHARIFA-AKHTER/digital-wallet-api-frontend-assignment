@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
-
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -20,7 +17,7 @@ const AgentCommission = () => {
           return;
         }
        
-        const res = await axios.get("http://localhost:3000/api/transactions/agent-commissions", {
+        const res = await axios.get("https://digital-wallet-api-backend.vercel.app/api/transactions/agent-commissions", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

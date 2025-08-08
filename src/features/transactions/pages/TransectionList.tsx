@@ -19,7 +19,7 @@ const TransactionList = () => {
       const { token } = JSON.parse(storedUser);
 
       try {
-        const res = await axios.get("http://localhost:3000/api/transactions/me", {
+        const res = await axios.get("https://digital-wallet-api-backend.vercel.app/api/transactions/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
