@@ -27,6 +27,7 @@ import PrivateRoute from "@/middleware/PrivateRoute";
 import RoleGuard from "@/middleware/RoleGuard";
 import SettingsPage from "@/features/settings/SettingsPage";
 import AgentCommission from "@/features/agents/Pages/AgentCommission";
+import Unauthorized from "@/Pages/Unauthorized";
 
 const AppRoutes = () => {
   return (
@@ -36,6 +37,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
            {/* <Route path="/wallet" element={<WalletPage />} />
         <Route path="/transactions" element={<TransactionList />} /> */}
       </Route>
@@ -45,7 +47,7 @@ const AppRoutes = () => {
         path="/dashboard/user"
         element={
           <PrivateRoute>
-            <RoleGuard allowedRoles={["user"]}>
+            <RoleGuard allowedRoles={["USER"]}>
               <DashboardLayout />
             </RoleGuard>
           </PrivateRoute>
@@ -61,7 +63,7 @@ const AppRoutes = () => {
         path="/dashboard/admin"
         element={
           <PrivateRoute>
-            <RoleGuard allowedRoles={["admin"]}>
+            <RoleGuard allowedRoles={["ADMIN"]}>
               <DashboardLayout />
             </RoleGuard>
           </PrivateRoute>
@@ -80,7 +82,7 @@ const AppRoutes = () => {
         path="/dashboard/agent"
         element={
           <PrivateRoute>
-            <RoleGuard allowedRoles={["agent"]}>
+            <RoleGuard allowedRoles={["AGENT"]}>
               <DashboardLayout />
             </RoleGuard>
           </PrivateRoute>

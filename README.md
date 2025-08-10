@@ -59,5 +59,5 @@ frontend/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/digital-wallet-frontend.git
+git clone https://github.com/SHARIFA-AKHTER/digital-wallet-api-frontend-assignment.git
 cd digital-wallet-frontend/frontend

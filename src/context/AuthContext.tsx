@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 interface User {
   name: string;
   email: string;
-  role: "user" | "agent" | "admin";
+  role: "USER" | "AGENT" | "ADMIN";
   token: string;
 }
 

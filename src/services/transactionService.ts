@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { ITransaction } from "../types/transaction";
 
-const API_BASE = "https://digital-wallet-api-backend.vercel.app/api";
+const API_BASE = "http://localhost:3000/api";
 
 const getAuthHeader = () => {
   const authUser = localStorage.getItem("authUser");

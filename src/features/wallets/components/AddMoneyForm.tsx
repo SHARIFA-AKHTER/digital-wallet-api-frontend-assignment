@@ -25,7 +25,7 @@ const AddMoneyForm = () => {
         
   console.log("Sending token:", token);
       const response = await axios.post<{ success: boolean; data: IWallet }>(
-        "https://digital-wallet-api-backend.vercel.app/api/wallet/add",
+        "http://localhost:3000/api/wallet/add",
         { amount },
         {
           headers: {

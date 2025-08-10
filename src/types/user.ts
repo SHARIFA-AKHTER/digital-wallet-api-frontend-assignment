@@ -1,19 +1,5 @@
-// export type Role = "USER" | "AGENT" | "ADMIN";
 
-// export type IsActive = "ACTIVE" | "INACTIVE" | "BLOCKED";
-
-// export interface IUser {
-//   _id?: string;
-//   name: string;
-//   email: string;
-//   password?: string;
-//   role: Role;
-//   isActive?: IsActive;
-//   isDeleted?: boolean;
-//   avatar?: string;
-// }
-
-export type Role = "user" | "admin" | "agent";
+export type Role = "USER" | "ADMIN" | "AGENT";
 
 export interface IUser {
   _id: string;
@@ -23,4 +9,5 @@ export interface IUser {
   isActive: "PENDING" | "ACTIVE" | "REJECTED" |"INACTIVE";
   createdAt: string;
   updatedAt: string;
+  commissionRate?: number;
 }

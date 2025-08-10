@@ -2,7 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
 interface RoleGuardProps {
-  allowedRoles: Array<"user" | "agent" | "admin">;
+  allowedRoles: Array<"USER" | "AGENT" | "ADMIN">;
   children: React.ReactNode;
 }
 

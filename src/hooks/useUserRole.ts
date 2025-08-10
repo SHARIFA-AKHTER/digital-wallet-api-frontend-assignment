@@ -7,9 +7,9 @@ import { useAuth } from "@/context/AuthContext";
 export const useUserRole = () => {
   const { user } = useAuth();
 
-  const isAdmin = user?.role === "admin";
-  const isUser = user?.role === "user";
-  const isAgent = user?.role === "agent";
+  const isAdmin = user?.role === "ADMIN";
+  const isUser = user?.role === "USER";
+  const isAgent = user?.role === "AGENT";
 
   return {
     isAdmin,

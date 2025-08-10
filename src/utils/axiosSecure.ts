@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  baseURL: "https://digital-wallet-api-backend.vercel.app/api", 
+  baseURL: "http://localhost:3000/api", 
 });
 
 axiosSecure.interceptors.request.use((config) => {

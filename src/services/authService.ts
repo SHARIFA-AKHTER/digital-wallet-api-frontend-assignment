@@ -7,7 +7,7 @@ interface LoginData {
 }
 
 export const loginUser = async (data: LoginData) => {
-  const response = await axios.post("https://digital-wallet-api-backend.vercel.app/api/auth/login", data);
+  const response = await axios.post("http://localhost:3000/api/auth/login", data);
   return response.data;
 };
 
@@ -15,8 +15,8 @@ export const registerUser = async (data: {
   name: string;
   email: string;
   password: string;
-  role: "user" | "agent" | "admin";
+  role: "USER" | "AGENT" | "ADMIN";
 }) => {
-  const response = await axios.post("https://digital-wallet-api-backend.vercel.app/api/user/register", data);
+  const response = await axios.post("http://localhost:3000/api/user/register", data);
   return response.data;
 };
