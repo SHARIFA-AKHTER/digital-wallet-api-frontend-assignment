@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const Sidebar = () => {
-  const { isAdmin, isAgent, isUser } = useUserRole();
+  const { isAdmin, isAgent, isUser,role } = useUserRole();
+  console.log("Sidebar roles:", { isAdmin, isAgent, isUser, role });
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
